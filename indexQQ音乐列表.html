@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			ul,
+			li,
+			h2 {
+				margin: 0;
+				padding: 0;
+			}
+			
+			li {
+				list-style: none;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="qq.css" />
+		<script src="./src/vue.js"></script>
+	</head>
+	<body onselectstart="return false;">
+		<div id="app">
+			<div class="list" >
+				<div class="tab" v-for="value,index in tabs">
+					<h2 @click="changtoggle(index)"><span></span>{{value.title}}</h2>
+						<ul v-bind:style="{display:index === currentIndex ? 'block' : 'none'}">
+							<li v-for="item in value.lists">{{item.smalltitle}}</li>
+						</ul>
+				</div>
+			</div>
+		</div>
+		<script>
+			let data = {
+				tabs:[
+					{
+						title: '好友',
+						lists:[{
+							smalltitle: '小佳Love'
+						},{
+							smalltitle: '从来就是这么正经'
+						},{
+							smalltitle: 'leo是个胖子'
+						},{
+							smalltitle: 'momo不是陌陌'
+						}]
+					},{
+						title: '企业好友',
+						lists:[{
+							smalltitle: '习近平'
+						},{
+							smalltitle: '普京'
+						},{
+							smalltitle: '奥巴马'
+						}]
+					},{
+						title: '黑名单',
+						lists:[{
+							smalltitle: '安倍'
+						},{
+							smalltitle: '杜特尔特'
+						}]
+					}
+				],
+				currentIndex : -1
+			}
+			new Vue({
+				el:'#app',
+				data:data,
+				methods:{
+					changtoggle(i){
+						if(this.currentIndex != -1){
+							this.currentIndex = -1
+						}else{
+							this.currentIndex = i
+						}
+						
+						
+						
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

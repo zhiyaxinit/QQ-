@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .yellow{
+            background: yellow
+        }
+        .tab div{
+            display: none
+        }
+    </style>
+    <script src="./src/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="tab">
+            <button 
+                :class="{yellow : item === currentIndex}"
+                v-for="value,item in tab"
+                @click=changIndex(item)
+            >
+            {{value.title}}
+            </button>
+            <div 
+                :style = "{display: index === currentIndex ? 'block' : 'none'}"
+                v-for="value,index in tab"
+            >
+                <p v-for="item in value.list">{{item.smallTitlt}}</p>
+            </div>
+            
+        </div>
+    </div>
+    <script>
+       let data ={
+           tab : [
+               {
+                   title: '新闻',
+                    list: [{
+                        smallTitlt: '新闻'
+                    },{
+                        smallTitlt: '新闻'
+                    },{
+                        smallTitlt: '新闻'
+                    }]
+               },
+               {
+                   title: '娱乐',
+                    list: [{
+                        smallTitlt: '娱乐'
+                    },{
+                        smallTitlt: '娱乐'
+                    },{
+                        smallTitlt: '娱乐'
+                    }]
+               },
+               {
+                   title: '体育',
+                    list: [{
+                        smallTitlt: '体育'
+                    },{
+                        smallTitlt: '体育'
+                    },{
+                        smallTitlt: '体育'
+                    }]
+               }
+           ],
+           currentIndex: 0
+       }
+       new Vue({
+           el: '#app',
+           data: data,
+           methods:{
+            changIndex(item){
+                this.currentIndex = item
+            }
+           }
+       })
+    </script>
+</body>
+</html>
